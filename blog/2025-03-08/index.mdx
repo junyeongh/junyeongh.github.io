@@ -1,0 +1,80 @@
+---
+title: Test
+authors: [junyeong]
+description: This description will override the default.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Hi
+
+This is my blog using Docusaurus.
+<!-- truncate -->
+`<!-- truncate -->` creates `Read more`
+<!--
+---
+
+Testing Docusaurus features
+
+## MDX and React
+
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '2px',
+      color: '#fff',
+      padding: '0.2rem',
+    }}>
+    {children}
+  </span>
+);
+
+<Highlight color="#25c2a0">Docusaurus green</Highlight> and <Highlight color="#1877F2">Facebook blue</Highlight> are my favorite colors.
+
+I can write **Markdown** alongside my _JSX_!
+
+## Tabs
+
+<Tabs>
+  <TabItem value="apple" label="Apple" default>
+    This is an apple 🍎
+  </TabItem>
+  <TabItem value="orange" label="Orange">
+    This is an orange 🍊
+  </TabItem>
+  <TabItem value="banana" label="Banana">
+    This is a banana 🍌
+  </TabItem>
+</Tabs>
+
+## Code blocks
+
+```python showLineNumbers
+print("hello world")
+```
+
+```jsx title="/src/components/HelloCodeTitle.js"
+function HelloCodeTitle(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+```
+
+## Admonitions
+
+:::note
+
+Some **content** with _Markdown_ `syntax`. Check [this `api`](#Admonitions).
+
+:::
+
+> [!NOTE] Callout?
+>
+> I guess GitHub style callout isn't supported.
+
+## Math Equations
+
+Let $f\colon[a,b]\to\R$ be Riemann integrable. Let $F\colon[a,b]\to\R$ be
+$F(x)=\int_{a}^{x} f(t)\,dt$. Then $F$ is continuous, and at all $x$ such that
+$f$ is continuous at $x$, $F$ is differentiable at $x$ with $F'(x)=f(x)$. -->
