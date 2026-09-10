@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Junyeong Heo</title>
+  <meta name="description" content="Personal site of Junyeong Heo." />
+  <link rel="stylesheet" href="/styles/index.css" />
+  <script type="module" src="/components/index.ts"></script>
+</head>
+
+<body>
+  <layout-header current="home"></layout-header>
+
+  <main class="wrap">
+    <div class="identity">
+      <span class="avatar" role="img" aria-label="Junyeong Heo">JH</span>
+      <h1>Junyeong Heo</h1>
+    </div>
+
+    <!-- Copy lives in src/content/index.yaml; both languages are rendered here at
+         build time and ?lang= picks which one shows. See plugins/content.ts. -->
+    <div class="lede"><!-- content:lede --></div>
+
+    <h2>Elsewhere</h2>
+    <ul class="linklist">
+      <li>
+        <a href="https://junyeongh.github.io/blog">Blog</a> <span class="note">— writing</span>
+      </li>
+      <li><a href="https://github.com/junyeongh">GitHub</a> <span class="note">— code</span></li>
+    </ul>
+
+    <p style="margin-top: 2rem;">
+      <ui-button href="/about">More about me</ui-button>
+    </p>
+  </main>
+
+  <layout-footer></layout-footer>
+</body>
+
+</html>
