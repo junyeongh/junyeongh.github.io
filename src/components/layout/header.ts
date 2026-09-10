@@ -13,14 +13,15 @@ import {
 } from "../../lib/i18n";
 
 type NavItem = {
-  href: string;
+  href?: string;
   label: string;
 };
 
 const NAV: readonly NavItem[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "https://junyeongh.github.io/blog", label: "Blog" },
+  { href: "https://github.com/junyeongh", label: "GitHub" },
+  { label: "Blog" },
 ];
 
 const LANGUAGE_CONTROL_LABEL = "Display language";
@@ -35,7 +36,7 @@ export class LayoutHeader extends HTMLElement {
 
     const links = NAV.map(({ href, label }) => {
       const isCurrent = label.toLowerCase() === current.toLowerCase();
-      return `<a href="${href}"${isCurrent ? ' aria-current="page"' : ""}>${label}</a>`;
+      return `<a${href ? ` href="${href}"` : ' aria-disabled="true"'}${isCurrent ? ' aria-current="page"' : ""}>${label}</a>`;
     }).join("");
 
     const shadowRoot = createShadowRoot(this);

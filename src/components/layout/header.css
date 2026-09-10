@@ -35,6 +35,18 @@ a {
   }
 }
 
+a:not([href]) {
+  color: var(--color-text-secondary);
+  cursor: default;
+  text-decoration: none;
+}
+
+a[href^="http"]::after {
+  color: gray;
+  content: " ↗";
+  font-size: 0.8em;
+}
+
 nav a {
   margin-right: 1rem;
 
