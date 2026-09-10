@@ -2,10 +2,9 @@ import { readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
-import { content } from "./plugins/content";
+import { content } from "./plugins/content.ts";
 
-const componentsDirectory = fileURLToPath(new URL("./src/components/", import.meta.url));
-const stylesDirectory = fileURLToPath(new URL("./src/styles/", import.meta.url));
+const sourceDirectory = fileURLToPath(new URL("./src/", import.meta.url));
 
 const routesDirectory = fileURLToPath(new URL("./src/routes/", import.meta.url));
 const routeEntries = readdirSync(routesDirectory, { recursive: true, encoding: "utf8" })
@@ -26,8 +25,7 @@ export default defineConfig({
   publicDir: publicDirectory,
   resolve: {
     alias: {
-      "/components": componentsDirectory,
-      "/styles": stylesDirectory,
+      "@": sourceDirectory,
     },
   },
   build: {

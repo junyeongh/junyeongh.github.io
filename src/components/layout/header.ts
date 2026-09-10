@@ -1,6 +1,6 @@
 import styles from "./header.css?inline";
-import { createShadowRoot, createStyleSheet } from "../../lib/components";
-import { UIDropdown, type DropdownChangeEvent } from "../ui/dropdown";
+import { createShadowRoot, createStyleSheet } from "@/lib/components";
+import { UIDropdown, type DropdownChangeEvent } from "@/components/ui/dropdown";
 import {
   LANGUAGES,
   LANGUAGE_LABELS,
@@ -10,7 +10,7 @@ import {
   onLanguageChange,
   setLanguage,
   type Language,
-} from "../../lib/i18n";
+} from "@/lib/i18n";
 
 type NavItem = {
   href?: string;

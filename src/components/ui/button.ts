@@ -1,5 +1,5 @@
 import styles from "./button.css?inline";
-import { createShadowRoot, createStyleSheet } from "../../lib/components";
+import { createShadowRoot, createStyleSheet } from "@/lib/components";
 
 const BUTTON_VARIANTS = ["solid", "secondary", "outline", "destructive", "ghost"] as const;
 type ButtonVariant = (typeof BUTTON_VARIANTS)[number];
