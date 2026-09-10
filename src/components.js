@@ -1,30 +1,30 @@
 /* ------------------------------------------------------------------
-   Custom elements for the site chrome and small UI bits.
+   Custom elements for the site chrome and reusable interactive UI.
    No build step, no dependencies. Each component owns its styles in a
    shadow root and reads design tokens from :root in /style.css.
    ------------------------------------------------------------------ */
 
 /** Attach a shadow root and fill it in one go. */
 function shadow(host, html) {
-  const root = host.attachShadow({ mode: 'open' });
+  const root = host.attachShadow({ mode: "open" });
   root.innerHTML = html;
   return root;
 }
 
 const NAV = [
-  { href: '/', label: 'Home' },
-  { href: '/about/', label: 'About' },
-  { href: 'https://junyeongh.github.io/blog', label: 'Blog' },
+  { href: "/", label: "Home" },
+  { href: "/about/", label: "About" },
+  { href: "https://junyeongh.github.io/blog", label: "Blog" },
 ];
 
-class SiteHeader extends HTMLElement {
+class LayoutHeader extends HTMLElement {
   connectedCallback() {
-    const current = this.getAttribute('current') ?? '';
+    const current = this.getAttribute("current") ?? "";
 
     const links = NAV.map(({ href, label }) => {
       const isCurrent = label.toLowerCase() === current.toLowerCase();
-      return `<a href="${href}"${isCurrent ? ' aria-current="page"' : ''}>${label}</a>`;
-    }).join('');
+      return `<a href="${href}"${isCurrent ? ' aria-current="page"' : ""}>${label}</a>`;
+    }).join("");
 
     shadow(
       this,
@@ -63,12 +63,12 @@ class SiteHeader extends HTMLElement {
         }
       </style>
       <p class="name"><a href="/">Junyeong Heo</a></p>
-      <nav aria-label="Primary">${links}</nav>`
+      <nav aria-label="Primary">${links}</nav>`,
     );
   }
 }
 
-class SiteFooter extends HTMLElement {
+class LayoutFooter extends HTMLElement {
   connectedCallback() {
     shadow(
       this,
@@ -86,88 +86,24 @@ class SiteFooter extends HTMLElement {
         a { color: inherit; text-underline-offset: 0.2em; }
       </style>
       <p>&copy; ${new Date().getFullYear()} Junyeong Heo &middot;
-        <a href="https://github.com/junyeongh">GitHub</a></p>`
+        <a href="https://github.com/junyeongh">GitHub</a></p>`,
     );
   }
 }
 
 /**
- * <x-avatar src="/assets/me.jpg" alt="Junyeong Heo" size="64">
- * Falls back to initials when no src is given.
+ * <ui-button href="/about/" variant="solid">About</ui-button>
+ * Renders an anchor when href is set, a native button otherwise.
+ * Variants: solid, secondary, outline, destructive, ghost.
  */
-class XAvatar extends HTMLElement {
-  static observedAttributes = ['src', 'alt', 'size', 'initials'];
-
+class UIButton extends HTMLElement {
   connectedCallback() {
-    this.render();
-  }
+    const href = this.getAttribute("href");
+    const requestedVariant = this.getAttribute("variant") ?? "solid";
+    const variants = new Set(["solid", "secondary", "outline", "destructive", "ghost"]);
+    const variant = variants.has(requestedVariant) ? requestedVariant : "solid";
 
-  attributeChangedCallback() {
-    if (this.shadowRoot) this.render();
-  }
-
-  render() {
-    const src = this.getAttribute('src');
-    const alt = this.getAttribute('alt') ?? '';
-    const size = this.getAttribute('size') ?? '64';
-    const initials = this.getAttribute('initials') ?? 'JH';
-
-    const inner = src
-      ? `<img src="${src}" alt="${alt}">`
-      : `<span class="initials" role="img" aria-label="${alt || initials}">${initials}</span>`;
-
-    const html = `<style>
-        :host {
-          display: inline-block;
-          width: var(--size);
-          height: var(--size);
-          vertical-align: middle;
-        }
-        .frame {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          overflow: hidden;
-          background: var(--color-border-subtle);
-          display: grid;
-          place-items: center;
-        }
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-        .initials {
-          font-family: var(--font-family-body);
-          font-size: calc(var(--size) * 0.36);
-          font-weight: 600;
-          color: var(--color-text-secondary);
-          letter-spacing: 0.02em;
-          user-select: none;
-        }
-      </style>
-      <div class="frame">${inner}</div>`;
-
-    if (this.shadowRoot) {
-      this.shadowRoot.innerHTML = html;
-    } else {
-      shadow(this, html);
-    }
-    this.style.setProperty('--size', `${size}px`);
-  }
-}
-
-/**
- * <x-button href="/about/">About</x-button>
- * Renders an anchor when href is set, a real <button> otherwise.
- */
-class XButton extends HTMLElement {
-  connectedCallback() {
-    const href = this.getAttribute('href');
-    const variant = this.getAttribute('variant') ?? 'solid';
-
-    const tag = href
+    const control = href
       ? `<a part="control" class="${variant}" href="${href}"><slot></slot></a>`
       : `<button part="control" class="${variant}" type="button"><slot></slot></button>`;
 
@@ -176,25 +112,41 @@ class XButton extends HTMLElement {
       `<style>
         :host { display: inline-block; }
         a, button {
+          box-sizing: border-box;
           display: inline-block;
+          padding: 0.55rem 1rem;
+          border: 1px solid transparent;
+          border-radius: var(--radius-control);
           font: inherit;
           font-family: var(--font-family-body);
           font-size: var(--font-size-control);
           line-height: 1.2;
-          padding: 0.55rem 1rem;
-          border-radius: var(--radius-control);
-          border: 1px solid var(--color-action-primary-background);
-          cursor: pointer;
           text-decoration: none;
+          cursor: pointer;
         }
         .solid {
+          border-color: var(--color-action-primary-background);
           background: var(--color-action-primary-background);
           color: var(--color-action-primary-foreground);
         }
+        .secondary {
+          border-color: var(--color-action-secondary-border);
+          background: var(--color-action-secondary-background);
+          color: var(--color-action-secondary-foreground);
+        }
+        .outline {
+          border-color: var(--color-action-outline-border);
+          background: transparent;
+          color: var(--color-action-outline-foreground);
+        }
+        .destructive {
+          border-color: var(--color-action-destructive-background);
+          background: var(--color-action-destructive-background);
+          color: var(--color-action-destructive-foreground);
+        }
         .ghost {
           background: transparent;
-          color: var(--color-text-primary);
-          border-color: var(--color-border-subtle);
+          color: var(--color-action-ghost-foreground);
         }
         a:hover, button:hover { opacity: 0.85; }
         a:focus-visible, button:focus-visible {
@@ -202,12 +154,11 @@ class XButton extends HTMLElement {
           outline-offset: 2px;
         }
       </style>
-      ${tag}`
+      ${control}`,
     );
   }
 }
 
-customElements.define('site-header', SiteHeader);
-customElements.define('site-footer', SiteFooter);
-customElements.define('x-avatar', XAvatar);
-customElements.define('x-button', XButton);
+customElements.define("layout-header", LayoutHeader);
+customElements.define("layout-footer", LayoutFooter);
+customElements.define("ui-button", UIButton);

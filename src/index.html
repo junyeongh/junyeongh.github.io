@@ -1,37 +1,62 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Junyeong Heo</title>
-    <meta name="description" content="Personal site of Junyeong Heo.">
-    <link rel="stylesheet" href="/style.css">
-    <script type="module" src="/components.js"></script>
-  </head>
-  <body>
-    <site-header current="home"></site-header>
 
-    <main class="wrap">
-      <p><x-avatar size="72" alt="Junyeong Heo" initials="JH"></x-avatar></p>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Junyeong Heo</title>
+  <meta name="description" content="Personal site of Junyeong Heo." />
+  <link rel="stylesheet" href="/style.css" />
+  <script type="module" src="/components.js"></script>
+</head>
 
+<body>
+  <layout-header current="home"></layout-header>
+
+  <main class="wrap">
+    <div class="identity">
+      <span class="avatar" role="img" aria-label="Junyeong Heo">JH</span>
       <h1>Junyeong Heo</h1>
+    </div>
 
-      <p class="lede">
-        <!-- TODO: one or two sentences on who you are and what you work on. -->
-        Placeholder introduction — a line about what you do, and what this site is for.
-      </p>
+    <p class="lede">
+      <!-- TODO: one or two sentences on who you are and what you work on. -->
+      Placeholder introduction — a line about what you do, and what this site is for.
 
-      <h2>Elsewhere</h2>
-      <ul class="linklist">
-        <li><a href="https://junyeongh.github.io/blog">Blog</a> <span class="note">— writing</span></li>
-        <li><a href="https://github.com/junyeongh">GitHub</a> <span class="note">— code</span></li>
-      </ul>
+      <br></br>
+      Aliquip est eu aliquip incididunt commodo commodo fugiat culpa irure proident ipsum enim.
+      Sint enim occaecat cupidatat excepteur duis nisi est pariatur proident dolor ipsum commodo
+      mollit. Anim mollit anim nulla commodo. Minim consequat Lorem ea reprehenderit ullamco
+      aliqua irure sit minim elit deserunt ullamco. In velit voluptate eu ullamco sint
+      reprehenderit ipsum in esse culpa dolor do nostrud amet. Ea qui consectetur nulla mollit
+      consequat dolore in voluptate minim reprehenderit excepteur est.
 
-      <p style="margin-top:2rem">
-        <x-button href="/about/">More about me</x-button>
-      </p>
-    </main>
+      <br></br>
+      Mollit exercitation deserunt cillum amet et excepteur adipisicing occaecat ea nisi. Magna magna qui aliqua anim
+      incididunt voluptate ea sint veniam anim elit officia. Laboris laboris dolor adipisicing incididunt est officia
+      sint. Voluptate ea tempor pariatur nulla Lorem duis est ullamco ex mollit laboris. Pariatur deserunt dolore
+      consequat minim Lorem nostrud incididunt Lorem. Dolore deserunt pariatur laboris laboris. Sint exercitation cillum
+      dolor duis eu quis.
+    </p>
 
-    <site-footer></site-footer>
-  </body>
+    <h2>Elsewhere</h2>
+    <ul class="linklist">
+      <li>
+        <a href="https://junyeongh.github.io/blog">Blog</a> <span class="note">— writing</span>
+      </li>
+      <li><a href="https://github.com/junyeongh">GitHub</a> <span class="note">— code</span></li>
+    </ul>
+
+    <p style="margin-top: 2rem;">
+      <ui-button href="/about/">More about me</ui-button>
+      <ui-button variant="secondary">Save</ui-button>
+      <ui-button variant="outline">Cancel</ui-button>
+      <ui-button variant="destructive">Delete</ui-button>
+      <ui-button variant="ghost">Learn more</ui-button>
+    </p>
+  </main>
+
+  <layout-footer></layout-footer>
+</body>
+
 </html>
