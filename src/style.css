@@ -1,0 +1,124 @@
+/* ------------------------------------------------------------------
+   Design tokens.
+   Custom properties inherit through shadow boundaries, so these are
+   what the components in /components.js style themselves with.
+   ------------------------------------------------------------------ */
+
+:root {
+  --bg: #fdfdfc;
+  --fg: #1a1a18;
+  --muted: #6b6b66;
+  --rule: #e2e2dd;
+  --accent-bg: #1a1a18;
+  --accent-fg: #fdfdfc;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", "Noto Sans KR", sans-serif;
+
+  --measure: 34rem;
+  --step: 0.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161614;
+    --fg: #e8e8e3;
+    --muted: #97978f;
+    --rule: #2e2e2a;
+    --accent-bg: #e8e8e3;
+    --accent-fg: #161614;
+  }
+}
+
+/* ---- base ---- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 4rem 1.5rem 6rem;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+/* ---- type (light DOM content) ---- */
+
+h1 {
+  margin: 0 0 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+h2 {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 1.25rem;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.5px;
+}
+
+a:hover {
+  text-decoration-thickness: 1.5px;
+}
+
+.lede {
+  color: var(--muted);
+}
+
+.linklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linklist li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.linklist li:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.linklist .note {
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+/* ---- avoid a flash of unstyled custom elements ---- */
+
+site-header:not(:defined),
+site-footer:not(:defined) {
+  visibility: hidden;
+}
+
+site-header:not(:defined) {
+  display: block;
+  min-height: 4rem;
+}
