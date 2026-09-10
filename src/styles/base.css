@@ -1,0 +1,86 @@
+/* https://github.com/tailwindlabs/tailwindcss/blob/main/packages/tailwindcss/theme.css */
+
+hr {
+  height: 0;
+  color: inherit;
+  border-top-width: 1px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
+}
+
+/* ---- avoid a flash of unstyled custom elements ---- */
+
+layout-header:not(:defined),
+layout-footer:not(:defined) {
+  visibility: hidden;
+}
+
+layout-header:not(:defined) {
+  display: block;
+  min-height: 4rem;
+}
+
+/* ---- reusable light-DOM UI ---- */
+
+.identity {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.avatar {
+  display: grid;
+  flex: none;
+  width: 2.25rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-border-subtle);
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.more {
+  margin-top: 2rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--color-action-primary-background);
+  border-radius: var(--radius-control);
+  background: var(--color-action-primary-background);
+  color: var(--color-action-primary-foreground);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-control);
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-outline);
+    outline-offset: 2px;
+  }
+}

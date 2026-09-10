@@ -1,61 +1,6 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
-
-/* ------------------------------------------------------------------
-  Design tokens.
-  Primitive tokens are raw values. Semantic tokens describe their use
-  in the interface and are the only tokens consumed by page styles and
-  Shadow-DOM components. Add component tokens only for stable, public
-  component customization contracts.
-   ------------------------------------------------------------------ */
-
-:root {
-  /* Primitive tokens */
-  --color-neutral-0: #fdfdfc;
-  --color-neutral-50: #e8e8e3;
-  --color-neutral-100: #e2e2dd;
-  --color-neutral-300: #97978f;
-  --color-neutral-500: #6b6b66;
-  --color-neutral-700: #2e2e2a;
-  --color-neutral-900: #1a1a18;
-  --color-neutral-950: #161614;
-
-  --font-sans: "Pretendard Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-size-sm: 0.875rem;
-  --font-size-md: 0.9375rem;
-  --font-size-base: 1rem;
-  --font-size-2xl: 1.5rem;
-  --size-content: 34rem;
-  --radius-sm: 0.375rem;
-
-  /* Semantic tokens */
-  --font-family-body: var(--font-sans);
-  --font-size-body: var(--font-size-base);
-  --font-size-caption: var(--font-size-sm);
-  --font-size-control: var(--font-size-md);
-  --font-size-heading: var(--font-size-2xl);
-  --layout-content-measure: var(--size-content);
-  --radius-control: var(--radius-sm);
-
-  --color-surface-canvas: var(--color-neutral-0);
-  --color-text-primary: var(--color-neutral-900);
-  --color-text-secondary: var(--color-neutral-500);
-  --color-border-subtle: var(--color-neutral-100);
-  --color-action-primary-background: var(--color-neutral-900);
-  --color-action-primary-foreground: var(--color-neutral-0);
-  --color-focus-outline: var(--color-neutral-900);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-surface-canvas: var(--color-neutral-950);
-    --color-text-primary: var(--color-neutral-50);
-    --color-text-secondary: var(--color-neutral-300);
-    --color-border-subtle: var(--color-neutral-700);
-    --color-action-primary-background: var(--color-neutral-50);
-    --color-action-primary-foreground: var(--color-neutral-950);
-    --color-focus-outline: var(--color-neutral-50);
-  }
-}
+@import "node_modules/modern-normalize/modern-normalize.css";
+@import "./styles/token.css";
+@import "./styles/base.css";
 
 /* ---- base ---- */
 
@@ -79,15 +24,7 @@ body {
   line-height: 1.7;
 }
 
-.wrap {
-  max-width: var(--layout-content-measure);
-  margin: 0 auto;
-}
-
-/* ---- type (light DOM content) ---- */
-
 h1 {
-  margin: 0 0 1.5rem;
   font-size: var(--font-size-heading);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -95,13 +32,8 @@ h1 {
 }
 
 h2 {
-  margin: 2.5rem 0 0.75rem;
   font-size: 1rem;
   font-weight: 600;
-}
-
-p {
-  margin: 0 0 1.25rem;
 }
 
 a {
@@ -112,6 +44,11 @@ a {
   &:hover {
     text-decoration-thickness: 1.5px;
   }
+}
+
+.wrap {
+  max-width: var(--layout-content-measure);
+  margin: 0 auto;
 }
 
 .lede {
@@ -136,16 +73,4 @@ a {
     color: var(--color-text-secondary);
     font-size: var(--font-size-control);
   }
-}
-
-/* ---- avoid a flash of unstyled custom elements ---- */
-
-site-header:not(:defined),
-site-footer:not(:defined) {
-  visibility: hidden;
-}
-
-site-header:not(:defined) {
-  display: block;
-  min-height: 4rem;
 }
