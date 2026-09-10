@@ -1,0 +1,8 @@
+# Copy for the about route (routes/about.html). See index.yaml for the format.
+
+lede:
+  # TODO: the longer version of the home page introduction.
+  en:
+    - Placeholder — the longer version of the introduction on the home page.
+  ko:
+    - Placeholder — 첫 화면 소개의 조금 더 긴 버전.

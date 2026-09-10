@@ -63,12 +63,19 @@ export function onLanguageChange(listener: (language: Language) => void): () => 
   return () => document.removeEventListener(LANGUAGE_CHANGE_EVENT, handler);
 }
 
+/** A route, rather than a file such as a PDF that has no language of its own. */
+function isPagePath(href: string): boolean {
+  const lastSegment = href.slice(href.lastIndexOf("/"));
+  const extension = /\.[^.]+$/.exec(lastSegment)?.[0];
+  return extension === undefined || extension === ".html";
+}
+
 /**
  * Carry the language across a site-internal navigation. Site-relative hrefs get
- * the `?lang=` they need; absolute and external URLs are returned untouched.
+ * the `?lang=` they need; external URLs and file links are returned untouched.
  */
 export function withLanguage(href: string, language: Language): string {
-  if (!href.startsWith("/") || language === DEFAULT_LANGUAGE) {
+  if (!href.startsWith("/") || language === DEFAULT_LANGUAGE || !isPagePath(href)) {
     return href;
   }
   const url = new URL(href, window.location.origin);

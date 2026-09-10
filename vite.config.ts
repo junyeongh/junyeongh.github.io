@@ -2,6 +2,7 @@ import { readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
+import { content } from "./plugins/content";
 
 const componentsDirectory = fileURLToPath(new URL("./src/components/", import.meta.url));
 const stylesDirectory = fileURLToPath(new URL("./src/styles/", import.meta.url));
@@ -21,6 +22,7 @@ const outputDirectory = fileURLToPath(new URL("./dist/", import.meta.url));
 export default defineConfig({
   root: routesDirectory,
   appType: "mpa",
+  plugins: [content()],
   publicDir: publicDirectory,
   resolve: {
     alias: {
