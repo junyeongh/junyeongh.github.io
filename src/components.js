@@ -31,9 +31,9 @@ class SiteHeader extends HTMLElement {
       `<style>
         :host {
           display: block;
-          max-width: var(--measure);
+          max-width: var(--layout-content-measure);
           margin: 0 auto 3.5rem;
-          font-family: var(--font-sans);
+          font-family: var(--font-family-body);
         }
         .name {
           margin: 0;
@@ -42,7 +42,7 @@ class SiteHeader extends HTMLElement {
           letter-spacing: -0.01em;
         }
         .name a {
-          color: var(--fg);
+          color: var(--color-text-primary);
           text-decoration: none;
         }
         nav {
@@ -50,7 +50,7 @@ class SiteHeader extends HTMLElement {
           font-size: 0.9375rem;
         }
         a {
-          color: var(--muted);
+          color: var(--color-text-secondary);
           text-underline-offset: 0.2em;
           text-decoration-thickness: 0.5px;
         }
@@ -58,7 +58,7 @@ class SiteHeader extends HTMLElement {
         nav a:last-child { margin-right: 0; }
         a:hover { text-decoration-thickness: 1.5px; }
         [aria-current="page"] {
-          color: var(--fg);
+          color: var(--color-text-primary);
           text-decoration-thickness: 1px;
         }
       </style>
@@ -75,13 +75,13 @@ class SiteFooter extends HTMLElement {
       `<style>
         :host {
           display: block;
-          max-width: var(--measure);
+          max-width: var(--layout-content-measure);
           margin: 4rem auto 0;
           padding-top: 1.25rem;
-          border-top: 1px solid var(--rule);
-          color: var(--muted);
-          font-family: var(--font-sans);
-          font-size: 0.875rem;
+          border-top: 1px solid var(--color-border-subtle);
+          color: var(--color-text-secondary);
+          font-family: var(--font-family-body);
+          font-size: var(--font-size-caption);
         }
         a { color: inherit; text-underline-offset: 0.2em; }
       </style>
@@ -128,7 +128,7 @@ class XAvatar extends HTMLElement {
           height: 100%;
           border-radius: 50%;
           overflow: hidden;
-          background: var(--rule);
+          background: var(--color-border-subtle);
           display: grid;
           place-items: center;
         }
@@ -139,10 +139,10 @@ class XAvatar extends HTMLElement {
           display: block;
         }
         .initials {
-          font-family: var(--font-sans);
+          font-family: var(--font-family-body);
           font-size: calc(var(--size) * 0.36);
           font-weight: 600;
-          color: var(--muted);
+          color: var(--color-text-secondary);
           letter-spacing: 0.02em;
           user-select: none;
         }
@@ -178,27 +178,27 @@ class XButton extends HTMLElement {
         a, button {
           display: inline-block;
           font: inherit;
-          font-family: var(--font-sans);
-          font-size: 0.9375rem;
+          font-family: var(--font-family-body);
+          font-size: var(--font-size-control);
           line-height: 1.2;
           padding: 0.55rem 1rem;
-          border-radius: 6px;
-          border: 1px solid var(--accent-bg);
+          border-radius: var(--radius-control);
+          border: 1px solid var(--color-action-primary-background);
           cursor: pointer;
           text-decoration: none;
         }
         .solid {
-          background: var(--accent-bg);
-          color: var(--accent-fg);
+          background: var(--color-action-primary-background);
+          color: var(--color-action-primary-foreground);
         }
         .ghost {
           background: transparent;
-          color: var(--fg);
-          border-color: var(--rule);
+          color: var(--color-text-primary);
+          border-color: var(--color-border-subtle);
         }
         a:hover, button:hover { opacity: 0.85; }
         a:focus-visible, button:focus-visible {
-          outline: 2px solid var(--fg);
+          outline: 2px solid var(--color-focus-outline);
           outline-offset: 2px;
         }
       </style>
