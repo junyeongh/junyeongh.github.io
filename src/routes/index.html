@@ -19,25 +19,45 @@
       <h1>Junyeong Heo</h1>
     </div>
 
-    <p class="lede">
-      <!-- TODO: one or two sentences on who you are and what you work on. -->
-      Placeholder introduction — a line about what you do, and what this site is for.
+    <!-- Introduction. Both languages ship in the markup; the header dropdown and
+         ?lang= pick which one shows. See lib/i18n.ts. -->
+    <div class="lede">
+      <div data-lang="en" lang="en">
+        <!-- TODO: one or two sentences on who you are and what you work on. -->
+        <p>Placeholder introduction — a line about what you do, and what this site is for.</p>
 
-      <br></br>
-      Aliquip est eu aliquip incididunt commodo commodo fugiat culpa irure proident ipsum enim.
-      Sint enim occaecat cupidatat excepteur duis nisi est pariatur proident dolor ipsum commodo
-      mollit. Anim mollit anim nulla commodo. Minim consequat Lorem ea reprehenderit ullamco
-      aliqua irure sit minim elit deserunt ullamco. In velit voluptate eu ullamco sint
-      reprehenderit ipsum in esse culpa dolor do nostrud amet. Ea qui consectetur nulla mollit
-      consequat dolore in voluptate minim reprehenderit excepteur est.
+        <p>
+          Aliquip est eu aliquip incididunt commodo commodo fugiat culpa irure proident ipsum enim.
+          Sint enim occaecat cupidatat excepteur duis nisi est pariatur proident dolor ipsum commodo
+          mollit. Anim mollit anim nulla commodo. Minim consequat Lorem ea reprehenderit ullamco
+          aliqua irure sit minim elit deserunt ullamco. In velit voluptate eu ullamco sint
+          reprehenderit ipsum in esse culpa dolor do nostrud amet.
+        </p>
 
-      <br></br>
-      Mollit exercitation deserunt cillum amet et excepteur adipisicing occaecat ea nisi. Magna magna qui aliqua anim
-      incididunt voluptate ea sint veniam anim elit officia. Laboris laboris dolor adipisicing incididunt est officia
-      sint. Voluptate ea tempor pariatur nulla Lorem duis est ullamco ex mollit laboris. Pariatur deserunt dolore
-      consequat minim Lorem nostrud incididunt Lorem. Dolore deserunt pariatur laboris laboris. Sint exercitation cillum
-      dolor duis eu quis.
-    </p>
+        <p>
+          Mollit exercitation deserunt cillum amet et excepteur adipisicing occaecat ea nisi. Magna
+          magna qui aliqua anim incididunt voluptate ea sint veniam anim elit officia. Laboris
+          laboris dolor adipisicing incididunt est officia sint. Voluptate ea tempor pariatur nulla
+          Lorem duis est ullamco ex mollit laboris.
+        </p>
+      </div>
+
+      <div data-lang="ko" lang="ko">
+        <!-- TODO: 실제 소개 문구로 교체. -->
+        <p>소개 자리표시자 — 무슨 일을 하는지, 이 사이트는 무엇을 위한 곳인지 한 줄.</p>
+
+        <p>
+          자리표시자 문단입니다. 관심 있는 분야와 최근에 다루고 있는 기술을 두세 문장으로 적어 둘
+          자리입니다. 영문 소개와 같은 내용을 담되, 번역이 아니라 한국어로 읽히는 문장으로 쓰는 편이
+          좋습니다.
+        </p>
+
+        <p>
+          자리표시자 문단입니다. 그동안 해온 일, 앞으로 해보고 싶은 일, 연락이 닿으면 좋을 주제를
+          적어 둘 자리입니다.
+        </p>
+      </div>
+    </div>
 
     <h2>Elsewhere</h2>
     <ul class="linklist">
@@ -48,7 +68,7 @@
     </ul>
 
     <p style="margin-top: 2rem;">
-      <ui-button href="/about/">More about me</ui-button>
+      <ui-button href="/about">More about me</ui-button>
     </p>
   </main>
 

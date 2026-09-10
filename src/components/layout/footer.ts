@@ -1,5 +1,5 @@
 import styles from "./footer.css?inline";
-import { createShadowRoot, createStyleSheet } from "../utils";
+import { createShadowRoot, createStyleSheet } from "../../lib/components";
 
 const styleSheet = createStyleSheet(styles);
 

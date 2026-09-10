@@ -1,5 +1,5 @@
 import styles from "./button.css?inline";
-import { createShadowRoot, createStyleSheet } from "../utils";
+import { createShadowRoot, createStyleSheet } from "../../lib/components";
 
 const BUTTON_VARIANTS = ["solid", "secondary", "outline", "destructive", "ghost"] as const;
 type ButtonVariant = (typeof BUTTON_VARIANTS)[number];
@@ -11,12 +11,25 @@ function isButtonVariant(value: string): value is ButtonVariant {
 }
 
 /**
- * <ui-button href="/about/" variant="solid">About</ui-button>
+ * <ui-button href="/about" variant="solid">About</ui-button>
  * Renders an anchor when href is set, a native button otherwise.
  * Variants: solid, secondary, outline, destructive, ghost.
  */
 export class UIButton extends HTMLElement {
+  static observedAttributes = ["href", "variant"];
+
   connectedCallback() {
+    this.#render();
+  }
+
+  // `href` is rewritten after upgrade when the display language changes.
+  attributeChangedCallback() {
+    if (this.isConnected) {
+      this.#render();
+    }
+  }
+
+  #render() {
     const href = this.getAttribute("href");
     const requestedVariant = this.getAttribute("variant") ?? "solid";
     const variant = isButtonVariant(requestedVariant) ? requestedVariant : "solid";
