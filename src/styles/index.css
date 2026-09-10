@@ -1,6 +1,6 @@
-@import "node_modules/modern-normalize/modern-normalize.css";
-@import "./styles/token.css";
-@import "./styles/base.css";
+@import "modern-normalize/modern-normalize.css";
+@import "./token.css";
+@import "./base.css";
 
 .wrap {
   max-width: var(--layout-content-measure);

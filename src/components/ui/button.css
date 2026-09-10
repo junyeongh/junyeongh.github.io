@@ -1,0 +1,56 @@
+:host {
+  display: inline-block;
+}
+
+a,
+button {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  font: inherit;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-control);
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-outline);
+    outline-offset: 2px;
+  }
+}
+
+.solid {
+  border-color: var(--color-action-primary-background);
+  background: var(--color-action-primary-background);
+  color: var(--color-action-primary-foreground);
+}
+
+.secondary {
+  border-color: var(--color-action-secondary-border);
+  background: var(--color-action-secondary-background);
+  color: var(--color-action-secondary-foreground);
+}
+
+.outline {
+  border-color: var(--color-action-outline-border);
+  background: transparent;
+  color: var(--color-action-outline-foreground);
+}
+
+.destructive {
+  border-color: var(--color-action-destructive-background);
+  background: var(--color-action-destructive-background);
+  color: var(--color-action-destructive-foreground);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--color-action-ghost-foreground);
+}

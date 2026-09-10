@@ -1,24 +1,24 @@
 {
   "name": "junyeongh.github.io",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "@github:junyeongh",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "check:type": "tsc --noEmit",
+    "build": "pnpm run check:type && vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "12.3.4",
-      "onFail": "download"
-    }
-  },
-  "packageManager": "pnpm@12.3.4",
-  "type": "module",
   "dependencies": {
     "modern-normalize": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2"
   }
 }
