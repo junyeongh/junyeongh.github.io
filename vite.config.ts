@@ -6,20 +6,19 @@ import { content } from "./plugins/content.ts";
 
 const sourceDirectory = fileURLToPath(new URL("./src/", import.meta.url));
 
-const routesDirectory = fileURLToPath(new URL("./src/routes/", import.meta.url));
-const routeEntries = readdirSync(routesDirectory, { recursive: true, encoding: "utf8" })
+const routeEntries = readdirSync(sourceDirectory, { recursive: true, encoding: "utf8" })
   .filter((entry) => entry.endsWith(".html"))
-  .map((entry) => resolve(routesDirectory, entry));
+  .map((entry) => resolve(sourceDirectory, entry));
 
 if (routeEntries.length === 0) {
-  throw new Error(`No .html routes found in ${routesDirectory}`);
+  throw new Error(`No .html routes found in ${sourceDirectory}`);
 }
 
 const publicDirectory = fileURLToPath(new URL("./public/", import.meta.url));
 const outputDirectory = fileURLToPath(new URL("./dist/", import.meta.url));
 
 export default defineConfig({
-  root: routesDirectory,
+  root: sourceDirectory,
   appType: "mpa",
   plugins: [content()],
   publicDir: publicDirectory,
@@ -31,7 +30,7 @@ export default defineConfig({
   build: {
     outDir: outputDirectory,
     emptyOutDir: true,
-    rollupOptions: {
+    rolldownOptions: {
       input: routeEntries,
     },
   },

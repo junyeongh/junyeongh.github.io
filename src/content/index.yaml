@@ -1,5 +1,3 @@
-# Copy for the home route (routes/index.html).
-#
 # Each top-level key is a content block, placed by a `<!-- content:<key> -->`
 # comment in the route. Under it, one key per language in LANGUAGES
 # (src/lib/i18n.ts) and one list item per paragraph.
