@@ -6,21 +6,23 @@
   "license": "ISC",
   "author": "@github:junyeongh",
   "type": "module",
-  "packageManager": "pnpm@12.3.4",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
     "check:type": "tsc --noEmit",
     "build": "pnpm run check:type && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
   },
   "dependencies": {
     "modern-normalize": "^3.0.1"
   },
   "devDependencies": {
-    "@types/node": "^22.20.1",
+    "@types/node": "^24.13.4",
+    "oxfmt": "^0.67.0",
     "typescript": "^7.0.2",
-    "vite": "^8.2.2",
-    "yaml": "^2.9.0"
+    "vite": "^8.3.0",
+    "yaml": "^2.9.1"
   }
 }
