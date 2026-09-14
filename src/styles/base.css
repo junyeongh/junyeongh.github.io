@@ -21,6 +21,18 @@ a {
   text-decoration: inherit;
 }
 
+a:not([href]) {
+  color: var(--color-text-secondary);
+  cursor: default;
+  text-decoration: none;
+}
+
+a[href^='http']::after {
+  color: gray;
+  content: ' ↗';
+  font-size: 0.8em;
+}
+
 /* ---- base ---- */
 html {
   -webkit-text-size-adjust: 100%;
@@ -37,10 +49,8 @@ body {
 }
 
 h1 {
-  font-size: var(--font-size-heading);
+  font-size: var(--font-size-xl);
   font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
 }
 
 h2 {

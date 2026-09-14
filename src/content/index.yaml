@@ -36,28 +36,8 @@ lede:
 
 links:
   about:
-    en:
-      {
-        label: About,
-        href: /about,
-        data-href: https://junyeongh.github.io/about,
-      }
-    ko:
-      {
-        label: 더 보기,
-        href: /about,
-        data-href: https://junyeongh.github.io/about?lang=ko,
-      }
+    en: { label: About, href: /about, data-href: https://junyeongh.github.io/about }
+    ko: { label: 더 보기, href: /about, data-href: https://junyeongh.github.io/about?lang=ko }
   resume:
-    en:
-      {
-        label: resume,
-        href: /resume/en.pdf,
-        data-href: https://junyeongh.github.io/resume/en.pdf,
-      }
-    ko:
-      {
-        label: 이력서,
-        href: /resume/kr.pdf,
-        data-href: https://junyeongh.github.io/resume/kr.pdf,
-      }
+    en: { label: resume, href: /resume/en.pdf, data-href: https://junyeongh.github.io/resume/en.pdf }
+    ko: { label: 이력서, href: /resume/kr.pdf, data-href: https://junyeongh.github.io/resume/kr.pdf }
