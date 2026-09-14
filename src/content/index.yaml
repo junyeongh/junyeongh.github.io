@@ -9,25 +9,55 @@
 
 lede:
   en:
-    - Hi, I'm Junyeong Heo, a programming enthusiast from South Korea 🇰🇷
+    - Hello, world! I'm Junyeong Heo, a programming enthusiast from South Korea.
     - >-
-      I enjoy playing with, building, and improving well-designed products that
-      have a solid philosophy and craftsmanship.
+      I have a huge interest in what we often call 'interfaces' - as the 'contact points' or 'connecting links'.
     - >-
-      I'm passionate about spotting challenges and areas for improvement in team
-      games, so that we can all succeed together.
-    - If you'd like to know more about me, check out my {resume}!
+      Exploring and playing with well-designed tools is a great joy to me.
+      I primarily focus on finding ways to improve those tools
+      so that they create a smoother connection for users when they are in someone's hands.
+    - >-
+      Beyond tool-to-tool and tool-to-human connections,
+      I care just as much about the values a team holds in building those tools.
+      I'm always open to opportunities to grow together through better connections between people.
+    - >-
+      If you'd like to know more about me, please visit my {about} page or check out my {resume}!
   ko:
-    - 안녕하세요, 허준영입니다 🇰🇷
+    - 안녕하세요!
     - >-
-      잘 설계된 도구를 탐구하고, 도구가 사용자에게 더 잘 전달될 수 있도록
-      개선하는 방법을 고민합니다.
+      저는 흔히 인터페이스라고 하는 '접점' 또는 '연결 고리'에 관심이 많습니다.
     - >-
-      그런 제품을 만들기 위한 팀의 가치를 이해하고, 개선할 수 있는 부분을 찾아
-      함께 발전시켜 나갑니다.
-    - 저에 대해 더 알고 싶으시다면 {resume}를 확인해주세요!
+      잘 설계된 도구를 탐구하고 사용하는 것을 즐깁니다.
+      주로 도구가 사용될 때, 사용자에게 더 매끄러운 연결을 이끌어내는 개선 방안을 고민합니다.
+    - >-
+      도구와 도구 사이, 도구와 사람 사이를 넘어 그런 도구를 만들기 위한 팀의 가치를 공감하고 있습니다.
+      사람과 사람 간의 더 나은 연결을 통해 함께 발전시켜 나갈 기회에는 언제나 열려 있습니다.
+    - 저에 대해 더 알고 싶으시다면 {about} 또는 {resume}를 확인해주세요!
 
 links:
+  about:
+    en:
+      {
+        label: About,
+        href: /about,
+        data-href: https://junyeongh.github.io/about,
+      }
+    ko:
+      {
+        label: 더 보기,
+        href: /about,
+        data-href: https://junyeongh.github.io/about?lang=ko,
+      }
   resume:
-    en: { label: resume, href: /resume/en.pdf }
-    ko: { label: 이력서, href: /resume/kr.pdf }
+    en:
+      {
+        label: resume,
+        href: /resume/en.pdf,
+        data-href: https://junyeongh.github.io/resume/en.pdf,
+      }
+    ko:
+      {
+        label: 이력서,
+        href: /resume/kr.pdf,
+        data-href: https://junyeongh.github.io/resume/kr.pdf,
+      }
