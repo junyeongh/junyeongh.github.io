@@ -1,8 +1,9 @@
-import { existsSync, readFileSync } from "node:fs";
-import { basename, resolve } from "node:path";
-import { fileURLToPath, URL } from "node:url";
-import { parse } from "yaml";
-import type { Plugin } from "vite";
+import type { Plugin } from 'vite';
+
+import { existsSync, readFileSync } from 'node:fs';
+import { basename, resolve } from 'node:path';
+import { fileURLToPath, URL } from 'node:url';
+import { parse } from 'yaml';
 
 /* ------------------------------------------------------------------
   Route copy, injected at build time.
@@ -13,7 +14,7 @@ import type { Plugin } from "vite";
   lets the right language paint immediately, with or without scripting.
    ------------------------------------------------------------------ */
 
-const contentDirectory = fileURLToPath(new URL("../src/content/", import.meta.url));
+const contentDirectory = fileURLToPath(new URL('../src/content/', import.meta.url));
 const PLACEHOLDER = /<!--\s*content:([\w-]+)\s*-->/g;
 const LINK_PLACEHOLDER = /\{([\w-]+)\}/g;
 
@@ -33,7 +34,7 @@ type RouteContent = {
   links: LinkTable;
 };
 
-const toPosix = (path: string) => path.replaceAll("\\", "/");
+const toPosix = (path: string) => path.replaceAll('\\', '/');
 
 function escapeHtml(text: string): string {
   return text.replace(/[&<>"']/g, (character) => `&#${character.charCodeAt(0)};`);
@@ -46,7 +47,9 @@ function readRouteContent(route: string): RouteContent | null {
   }
 
   // Every top-level key is a block, except the reserved `links` table.
-  const { links = {}, ...blocks } = parse(readFileSync(file, "utf8")) as { links?: LinkTable } & Record<string, Prose>;
+  const { links = {}, ...blocks } = parse(readFileSync(file, 'utf8')) as {
+    links?: LinkTable;
+  } & Record<string, Prose>;
   return { blocks, links };
 }
 
@@ -64,23 +67,21 @@ function renderParagraph(text: string, language: string, links: LinkTable): stri
 function renderBlock(prose: Prose, links: LinkTable): string {
   return Object.entries(prose)
     .map(([language, paragraphs]) => {
-      const body = paragraphs
-        .map((text) => `<p>${renderParagraph(text, language, links)}</p>`)
-        .join("\n        ");
+      const body = paragraphs.map((text) => `<p>${renderParagraph(text, language, links)}</p>`).join('\n        ');
       return `<div data-lang="${language}" lang="${language}">\n        ${body}\n      </div>`;
     })
-    .join("\n      ");
+    .join('\n      ');
 }
 
 export function content(): Plugin {
   return {
-    name: "site-content",
+    name: 'site-content',
 
     transformIndexHtml: {
       // `pre` so anything the content references still goes through Vite.
-      order: "pre",
+      order: 'pre',
       handler(html, context) {
-        const route = basename(context.filename, ".html");
+        const route = basename(context.filename, '.html');
 
         // Read per transform, so editing the YAML is picked up in dev.
         const routeContent = readRouteContent(route);
@@ -97,9 +98,9 @@ export function content(): Plugin {
 
     configureServer(server) {
       server.watcher.add(contentDirectory);
-      server.watcher.on("change", (file) => {
+      server.watcher.on('change', (file) => {
         if (toPosix(file).startsWith(toPosix(contentDirectory))) {
-          server.hot.send({ type: "full-reload" });
+          server.hot.send({ type: 'full-reload' });
         }
       });
     },

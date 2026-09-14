@@ -1,5 +1,6 @@
-import styles from "./dropdown.css?inline";
-import { createShadowRoot, createStyleSheet } from "@/lib/components";
+import { createShadowRoot, createStyleSheet } from '@/lib/components';
+
+import styles from './dropdown.css?inline';
 
 const styleSheet = createStyleSheet(styles);
 
@@ -16,9 +17,9 @@ const CHEVRON = `<svg part="chevron" viewBox="0 0 12 12" aria-hidden="true">
   </svg>`;
 
 function readOptions(host: HTMLElement): DropdownOption[] {
-  return [...host.querySelectorAll("option")].map((option) => ({
+  return [...host.querySelectorAll('option')].map((option) => ({
     value: option.value,
-    label: (option.textContent ?? "").trim() || option.value,
+    label: (option.textContent ?? '').trim() || option.value,
   }));
 }
 
@@ -35,7 +36,7 @@ function readOptions(host: HTMLElement): DropdownOption[] {
  * menu to the trailing edge.
  */
 export class UIDropdown extends HTMLElement {
-  static observedAttributes = ["value"];
+  static observedAttributes = ['value'];
 
   #trigger: HTMLButtonElement | null = null;
   #label: HTMLElement | null = null;
@@ -43,11 +44,11 @@ export class UIDropdown extends HTMLElement {
   #items: HTMLButtonElement[] = [];
 
   get value(): string {
-    return this.getAttribute("value") ?? "";
+    return this.getAttribute('value') ?? '';
   }
 
   set value(next: string) {
-    this.setAttribute("value", next);
+    this.setAttribute('value', next);
   }
 
   get open(): boolean {
@@ -58,15 +59,15 @@ export class UIDropdown extends HTMLElement {
     if (!this.#trigger) {
       this.#render();
     }
-    document.addEventListener("pointerdown", this.#onDocumentPointerDown);
+    document.addEventListener('pointerdown', this.#onDocumentPointerDown);
   }
 
   disconnectedCallback() {
-    document.removeEventListener("pointerdown", this.#onDocumentPointerDown);
+    document.removeEventListener('pointerdown', this.#onDocumentPointerDown);
   }
 
   attributeChangedCallback(name: string) {
-    if (name === "value") {
+    if (name === 'value') {
       this.#syncSelection();
     }
   }
@@ -79,36 +80,36 @@ export class UIDropdown extends HTMLElement {
       </button>
       <div part="menu" role="menu" hidden></div>`;
 
-    const trigger = shadowRoot.querySelector("button");
+    const trigger = shadowRoot.querySelector('button');
     const label = shadowRoot.querySelector<HTMLElement>('[part="label"]');
     const menu = shadowRoot.querySelector<HTMLElement>('[part="menu"]');
     if (!trigger || !label || !menu) {
       return;
     }
 
-    const accessibleName = this.getAttribute("label");
+    const accessibleName = this.getAttribute('label');
     if (accessibleName) {
-      trigger.setAttribute("aria-label", accessibleName);
-      menu.setAttribute("aria-label", accessibleName);
+      trigger.setAttribute('aria-label', accessibleName);
+      menu.setAttribute('aria-label', accessibleName);
     }
 
     this.#items = readOptions(this).map((option) => {
-      const item = document.createElement("button");
-      item.setAttribute("part", "item");
-      item.setAttribute("role", "menuitemradio");
-      item.setAttribute("aria-checked", "false");
-      item.type = "button";
+      const item = document.createElement('button');
+      item.setAttribute('part', 'item');
+      item.setAttribute('role', 'menuitemradio');
+      item.setAttribute('aria-checked', 'false');
+      item.type = 'button';
       item.tabIndex = -1;
       item.dataset.value = option.value;
       item.textContent = option.label;
-      item.addEventListener("click", () => this.#select(option.value));
+      item.addEventListener('click', () => this.#select(option.value));
       menu.append(item);
       return item;
     });
 
-    trigger.addEventListener("click", () => this.#setOpen(!this.open));
-    trigger.addEventListener("keydown", this.#onTriggerKeyDown);
-    menu.addEventListener("keydown", this.#onMenuKeyDown);
+    trigger.addEventListener('click', () => this.#setOpen(!this.open));
+    trigger.addEventListener('keydown', this.#onTriggerKeyDown);
+    menu.addEventListener('keydown', this.#onMenuKeyDown);
 
     this.#trigger = trigger;
     this.#label = label;
@@ -123,9 +124,9 @@ export class UIDropdown extends HTMLElement {
     }
     const selected = this.#items.find((item) => item.dataset.value === this.value) ?? this.#items[0];
     for (const item of this.#items) {
-      item.setAttribute("aria-checked", String(item === selected));
+      item.setAttribute('aria-checked', String(item === selected));
     }
-    this.#label.textContent = selected?.textContent ?? this.getAttribute("label") ?? "";
+    this.#label.textContent = selected?.textContent ?? this.getAttribute('label') ?? '';
   }
 
   #select(value: string) {
@@ -133,7 +134,7 @@ export class UIDropdown extends HTMLElement {
     this.#setOpen(false);
     this.#trigger?.focus();
 
-    const event: DropdownChangeEvent = new CustomEvent("change", {
+    const event: DropdownChangeEvent = new CustomEvent('change', {
       detail: { value },
       bubbles: true,
       composed: true,
@@ -146,10 +147,10 @@ export class UIDropdown extends HTMLElement {
       return;
     }
     this.#menu.hidden = !open;
-    this.#trigger.setAttribute("aria-expanded", String(open));
+    this.#trigger.setAttribute('aria-expanded', String(open));
 
     if (open) {
-      const checked = this.#items.find((item) => item.getAttribute("aria-checked") === "true");
+      const checked = this.#items.find((item) => item.getAttribute('aria-checked') === 'true');
       (checked ?? this.#items[0])?.focus();
     }
   }
@@ -164,7 +165,7 @@ export class UIDropdown extends HTMLElement {
 
   #onTriggerKeyDown = (event: KeyboardEvent) => {
     // Enter and Space already reach the click handler.
-    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       this.#setOpen(true);
     }
@@ -174,28 +175,28 @@ export class UIDropdown extends HTMLElement {
     const current = this.#items.findIndex((item) => item === event.target);
 
     switch (event.key) {
-      case "ArrowDown":
+      case 'ArrowDown':
         event.preventDefault();
         this.#focusItem(current + 1);
         break;
-      case "ArrowUp":
+      case 'ArrowUp':
         event.preventDefault();
         this.#focusItem(current - 1);
         break;
-      case "Home":
+      case 'Home':
         event.preventDefault();
         this.#focusItem(0);
         break;
-      case "End":
+      case 'End':
         event.preventDefault();
         this.#focusItem(this.#items.length - 1);
         break;
-      case "Escape":
+      case 'Escape':
         event.preventDefault();
         this.#setOpen(false);
         this.#trigger?.focus();
         break;
-      case "Tab":
+      case 'Tab':
         this.#setOpen(false);
         break;
       default:
@@ -210,6 +211,6 @@ export class UIDropdown extends HTMLElement {
   };
 }
 
-if (!customElements.get("ui-dropdown")) {
-  customElements.define("ui-dropdown", UIDropdown);
+if (!customElements.get('ui-dropdown')) {
+  customElements.define('ui-dropdown', UIDropdown);
 }

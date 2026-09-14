@@ -41,9 +41,9 @@ a:not([href]) {
   text-decoration: none;
 }
 
-a[href^="http"]::after {
+a[href^='http']::after {
   color: gray;
-  content: " ↗";
+  content: ' ↗';
   font-size: 0.8em;
 }
 
@@ -55,7 +55,7 @@ nav a {
   }
 }
 
-[aria-current="page"] {
+[aria-current='page'] {
   color: var(--color-text-primary);
   text-decoration-thickness: 1px;
 }

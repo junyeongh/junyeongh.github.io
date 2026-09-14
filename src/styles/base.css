@@ -78,7 +78,7 @@ layout-header:not(:defined) {
   display: none;
 }
 
-html[lang="en"] [data-lang~="en"],
-html[lang="ko"] [data-lang~="ko"] {
+html[lang='en'] [data-lang~='en'],
+html[lang='ko'] [data-lang~='ko'] {
   display: revert;
 }

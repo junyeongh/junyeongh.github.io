@@ -1,6 +1,5 @@
-import styles from "./header.css?inline";
-import { createShadowRoot, createStyleSheet } from "@/lib/components";
-import { UIDropdown, type DropdownChangeEvent } from "@/components/ui/dropdown";
+import { UIDropdown, type DropdownChangeEvent } from '@/components/ui/dropdown';
+import { createShadowRoot, createStyleSheet } from '@/lib/components';
 import {
   LANGUAGES,
   LANGUAGE_LABELS,
@@ -10,7 +9,9 @@ import {
   onLanguageChange,
   setLanguage,
   type Language,
-} from "@/lib/i18n";
+} from '@/lib/i18n';
+
+import styles from './header.css?inline';
 
 type NavItem = {
   href?: string;
@@ -18,13 +19,13 @@ type NavItem = {
 };
 
 const NAV: readonly NavItem[] = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "https://github.com/junyeongh", label: "GitHub" },
-  { label: "Blog" },
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: 'https://github.com/junyeongh', label: 'GitHub' },
+  { label: 'Blog' },
 ];
 
-const LANGUAGE_CONTROL_LABEL = "Display language";
+const LANGUAGE_CONTROL_LABEL = 'Display language';
 
 const styleSheet = createStyleSheet(styles);
 
@@ -32,12 +33,12 @@ export class LayoutHeader extends HTMLElement {
   #unsubscribe: (() => void) | null = null;
 
   connectedCallback() {
-    const current = this.getAttribute("current") ?? "";
+    const current = this.getAttribute('current') ?? '';
 
     const links = NAV.map(({ href, label }) => {
       const isCurrent = label.toLowerCase() === current.toLowerCase();
-      return `<a${href ? ` href="${href}"` : ' aria-disabled="true"'}${isCurrent ? ' aria-current="page"' : ""}>${label}</a>`;
-    }).join("");
+      return `<a${href ? ` href="${href}"` : ' aria-disabled="true"'}${isCurrent ? ' aria-current="page"' : ''}>${label}</a>`;
+    }).join('');
 
     const shadowRoot = createShadowRoot(this);
     shadowRoot.adoptedStyleSheets = [styleSheet];
@@ -70,16 +71,16 @@ export class LayoutHeader extends HTMLElement {
 
     // Choices are read from the light DOM on connect, so fill them in first.
     for (const language of LANGUAGES) {
-      const option = document.createElement("option");
+      const option = document.createElement('option');
       option.value = language;
       option.textContent = LANGUAGE_LABELS[language];
       dropdown.append(option);
     }
 
-    dropdown.setAttribute("label", LANGUAGE_CONTROL_LABEL);
-    dropdown.setAttribute("align", "end");
+    dropdown.setAttribute('label', LANGUAGE_CONTROL_LABEL);
+    dropdown.setAttribute('align', 'end');
 
-    dropdown.addEventListener("change", (event) => {
+    dropdown.addEventListener('change', (event) => {
       const { value } = (event as DropdownChangeEvent).detail;
       if (isLanguage(value)) {
         setLanguage(value);
@@ -90,6 +91,6 @@ export class LayoutHeader extends HTMLElement {
   }
 }
 
-if (!customElements.get("layout-header")) {
-  customElements.define("layout-header", LayoutHeader);
+if (!customElements.get('layout-header')) {
+  customElements.define('layout-header', LayoutHeader);
 }

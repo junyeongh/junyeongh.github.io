@@ -1,7 +1,8 @@
-import { existsSync, readdirSync } from "node:fs";
-import { resolve } from "node:path";
-import { fileURLToPath, URL } from "node:url";
-import type { Plugin } from "vite";
+import type { Plugin } from 'vite';
+
+import { existsSync, readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { fileURLToPath, URL } from 'node:url';
 
 /* ------------------------------------------------------------------
   File-based routes, kept in src/routes/.
@@ -15,13 +16,13 @@ import type { Plugin } from "vite";
   routes/about.html back to about.html on the way out.
    ------------------------------------------------------------------ */
 
-const routesDirectory = fileURLToPath(new URL("../src/routes/", import.meta.url));
-const ROUTES_PREFIX = "routes/";
+const routesDirectory = fileURLToPath(new URL('../src/routes/', import.meta.url));
+const ROUTES_PREFIX = 'routes/';
 
 /** Absolute path of every route, for `build.rolldownOptions.input`. */
 export function routeEntries(): string[] {
-  const entries = readdirSync(routesDirectory, { recursive: true, encoding: "utf8" })
-    .filter((entry) => entry.endsWith(".html"))
+  const entries = readdirSync(routesDirectory, { recursive: true, encoding: 'utf8' })
+    .filter((entry) => entry.endsWith('.html'))
     .map((entry) => resolve(routesDirectory, entry));
 
   if (entries.length === 0) {
@@ -43,11 +44,11 @@ function routeFor(pathname: string): string | null {
     return null;
   }
 
-  if (candidate.endsWith("/")) {
-    candidate += "index.html";
-  } else if (!candidate.endsWith(".html")) {
+  if (candidate.endsWith('/')) {
+    candidate += 'index.html';
+  } else if (!candidate.endsWith('.html')) {
     // GitHub Pages serves /about from about.html; match that in dev.
-    candidate += ".html";
+    candidate += '.html';
   }
 
   const file = resolve(routesDirectory, `.${candidate}`);
@@ -60,15 +61,15 @@ function routeFor(pathname: string): string | null {
 
 export function routes(): Plugin {
   return {
-    name: "site-routes",
+    name: 'site-routes',
 
     // No returned function, so this lands ahead of Vite's html middleware.
     configureServer(server) {
       server.middlewares.use((request, _response, next) => {
-        const url = request.url ?? "/";
+        const url = request.url ?? '/';
         const queryIndex = url.search(/[?#]/);
         const pathname = queryIndex === -1 ? url : url.slice(0, queryIndex);
-        const query = queryIndex === -1 ? "" : url.slice(queryIndex);
+        const query = queryIndex === -1 ? '' : url.slice(queryIndex);
 
         const route = routeFor(pathname);
         if (route) {
@@ -81,10 +82,10 @@ export function routes(): Plugin {
 
     generateBundle: {
       // `post`, so Vite's html plugin has emitted the routes by now.
-      order: "post",
+      order: 'post',
       handler(_options, bundle) {
         for (const [fileName, output] of Object.entries(bundle)) {
-          if (!fileName.startsWith(ROUTES_PREFIX) || !fileName.endsWith(".html") || output.type !== "asset") {
+          if (!fileName.startsWith(ROUTES_PREFIX) || !fileName.endsWith('.html') || output.type !== 'asset') {
             continue;
           }
 
@@ -94,7 +95,7 @@ export function routes(): Plugin {
           }
 
           delete bundle[fileName];
-          this.emitFile({ type: "asset", fileName: flattened, source: output.source });
+          this.emitFile({ type: 'asset', fileName: flattened, source: output.source });
         }
       },
     },

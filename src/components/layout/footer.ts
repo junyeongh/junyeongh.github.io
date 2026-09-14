@@ -1,5 +1,6 @@
-import styles from "./footer.css?inline";
-import { createShadowRoot, createStyleSheet } from "@/lib/components";
+import { createShadowRoot, createStyleSheet } from '@/lib/components';
+
+import styles from './footer.css?inline';
 
 const styleSheet = createStyleSheet(styles);
 
@@ -12,6 +13,6 @@ export class LayoutFooter extends HTMLElement {
   }
 }
 
-if (!customElements.get("layout-footer")) {
-  customElements.define("layout-footer", LayoutFooter);
+if (!customElements.get('layout-footer')) {
+  customElements.define('layout-footer', LayoutFooter);
 }

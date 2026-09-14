@@ -7,6 +7,6 @@ export function createStyleSheet(cssText: string): CSSStyleSheet {
 
 /** Return the host's existing shadow root or create one. */
 export function createShadowRoot(shadowHost: HTMLElement): ShadowRoot {
-  const shadowRoot = shadowHost.shadowRoot ?? shadowHost.attachShadow({ mode: "open" });
+  const shadowRoot = shadowHost.shadowRoot ?? shadowHost.attachShadow({ mode: 'open' });
   return shadowRoot;
 }

@@ -8,23 +8,23 @@
   on the first paint, with or without scripting.
    ------------------------------------------------------------------ */
 
-export const LANGUAGES = ["en", "ko"] as const;
+export const LANGUAGES = ['en', 'ko'] as const;
 export type Language = (typeof LANGUAGES)[number];
 
-export const DEFAULT_LANGUAGE: Language = "en";
+export const DEFAULT_LANGUAGE: Language = 'en';
 
 export const LANGUAGE_LABELS: Record<Language, string> = {
-  en: "English",
-  ko: "한국어",
+  en: 'English',
+  ko: '한국어',
 };
 
-export const LANGUAGE_CHANGE_EVENT = "ui:languagechange";
+export const LANGUAGE_CHANGE_EVENT = 'ui:languagechange';
 export type LanguageChangeEvent = CustomEvent<{ language: Language }>;
 
-const QUERY_KEY = "lang";
+const QUERY_KEY = 'lang';
 
 export function isLanguage(value: unknown): value is Language {
-  return typeof value === "string" && LANGUAGES.some((language) => language === value);
+  return typeof value === 'string' && LANGUAGES.some((language) => language === value);
 }
 
 /** The language asked for by `?lang=`, or the default when it is missing or unknown. */
@@ -48,9 +48,11 @@ export function setLanguage(language: Language): void {
   } else {
     url.searchParams.set(QUERY_KEY, language);
   }
-  window.history.replaceState(null, "", url);
+  window.history.replaceState(null, '', url);
 
-  const event: LanguageChangeEvent = new CustomEvent(LANGUAGE_CHANGE_EVENT, { detail: { language } });
+  const event: LanguageChangeEvent = new CustomEvent(LANGUAGE_CHANGE_EVENT, {
+    detail: { language },
+  });
   document.dispatchEvent(event);
 }
 
@@ -65,9 +67,9 @@ export function onLanguageChange(listener: (language: Language) => void): () => 
 
 /** A route, rather than a file such as a PDF that has no language of its own. */
 function isPagePath(href: string): boolean {
-  const lastSegment = href.slice(href.lastIndexOf("/"));
+  const lastSegment = href.slice(href.lastIndexOf('/'));
   const extension = /\.[^.]+$/.exec(lastSegment)?.[0];
-  return extension === undefined || extension === ".html";
+  return extension === undefined || extension === '.html';
 }
 
 /**
@@ -75,7 +77,7 @@ function isPagePath(href: string): boolean {
  * the `?lang=` they need; external URLs and file links are returned untouched.
  */
 export function withLanguage(href: string, language: Language): string {
-  if (!href.startsWith("/") || language === DEFAULT_LANGUAGE || !isPagePath(href)) {
+  if (!href.startsWith('/') || language === DEFAULT_LANGUAGE || !isPagePath(href)) {
     return href;
   }
   const url = new URL(href, window.location.origin);
@@ -88,9 +90,9 @@ export function withLanguage(href: string, language: Language): string {
  * as authored is kept in `data-href`, so switching back and forth stays lossless.
  */
 export function localizeLinks(root: ParentNode, language: Language): void {
-  for (const link of root.querySelectorAll<HTMLElement>("a[href], ui-button[href]")) {
-    const href = link.dataset.href ?? link.getAttribute("href") ?? "";
+  for (const link of root.querySelectorAll<HTMLElement>('a[href], ui-button[href]')) {
+    const href = link.dataset.href ?? link.getAttribute('href') ?? '';
     link.dataset.href = href;
-    link.setAttribute("href", withLanguage(href, language));
+    link.setAttribute('href', withLanguage(href, language));
   }
 }
