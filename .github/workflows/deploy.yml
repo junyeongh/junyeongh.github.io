@@ -20,18 +20,14 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      # pnpm first: setup-node's pnpm cache needs it on PATH.
-      # The version comes from `packageManager` in package.json.
-      - uses: pnpm/action-setup@v6
-
-      - uses: actions/setup-node@v7
+      - uses: pnpm/setup@v1
         with:
-          node-version: 24
-          cache: pnpm
+          version: 12
+          runtime: node@24
+          cache: true
 
       - run: pnpm install --frozen-lockfile
 
-      # Runs check:type before vite build, so a type error fails the deploy.
       - run: pnpm build
 
       - uses: actions/configure-pages@v6
